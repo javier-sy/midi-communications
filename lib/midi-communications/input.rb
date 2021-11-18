@@ -1,22 +1,16 @@
-require "unimidi/input/buffer_access"
-require "unimidi/input/stream_reader"
+require 'midi-communications/input/stream_reader'
 
-module UniMIDI
-
+module MIDICommunications
   # A MIDI input device
   class Input
-
     extend Device::ClassMethods
-    include BufferAccess
     include Device::InstanceMethods
     include StreamReader
 
     # All MIDI input devices -- used to populate the class
     # @return [Array<Input>]
     def self.all
-      Loader.devices(:direction => :input)
+      Loader.devices(direction: :input)
     end
-
   end
-
 end

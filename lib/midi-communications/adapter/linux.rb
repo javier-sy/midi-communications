@@ -1,30 +1,22 @@
-require "alsa-rawmidi"
+require 'alsa-rawmidi'
 
-module UniMIDI
-
+module MIDICommunications
   module Adapter
-
     # Load underlying devices using the alsa-rawmidi gem
-    module AlsaRawMIDI
-
+    module Linux
       module Loader
-
         extend self
 
-        # @return [Array<AlsaRawMIDI::Input>]
+        # @return [Array<Linux::Input>]
         def inputs
           ::AlsaRawMIDI::Device.all_by_type[:input]
         end
 
-        # @return [Array<AlsaRawMIDI::Output>]
+        # @return [Array<Linux::Output>]
         def outputs
           ::AlsaRawMIDI::Device.all_by_type[:output]
         end
-
       end
-
     end
-
   end
-
 end

@@ -1,30 +1,22 @@
-require "midi-jruby"
+require 'midi-jruby'
 
-module UniMIDI
-
+module MIDICommunications
   module Adapter
-
     # Load underlying devices using the midi-jruby gem
-    module MIDIJRuby
-
+    module JRuby
       module Loader
-
         extend self
 
-        # @return [Array<MIDIJRuby::Input>]
+        # @return [Array<JRuby::Input>]
         def inputs
           ::MIDIJRuby::Device.all_by_type[:input]
         end
 
-        # @return [Array<MIDIJRuby::Output>]
+        # @return [Array<JRuby::Output>]
         def outputs
           ::MIDIJRuby::Device.all_by_type[:output]
         end
-
       end
-
     end
-
   end
-
 end

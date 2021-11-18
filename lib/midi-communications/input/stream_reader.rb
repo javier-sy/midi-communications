@@ -1,18 +1,15 @@
-module UniMIDI
-
+module MIDICommunications
   class Input
-
     module StreamReader
-
       # Returns any data in the input buffer that have been received since the last call to a
       # StreamReader method. If a StreamReader method has not yet been called, all data received
       # since the program was initialized will be returned
       #
       # The data is returned as array of MIDI event hashes as such:
       #   [
-      #     { :data => [144, 60, 100], :timestamp => 1024 },
-      #     { :data => [128, 60, 100], :timestamp => 1100 },
-      #     { :data => [144, 40, 120], :timestamp => 1200 }
+      #     { data: [144, 60, 100], timestamp: 1024 },
+      #     { data: [128, 60, 100], timestamp: 1100 },
+      #     { data: [144, 40, 120], timestamp: 1200 }
       #   ]
       #
       # In this case, the data is an array of Numeric bytes
@@ -33,9 +30,9 @@ module UniMIDI
       #
       # Similar to Input#gets except that the returned message data as string of hex digits eg:
       #   [
-      #     { :data => "904060", :timestamp => 904 },
-      #     { :data => "804060", :timestamp => 1150 },
-      #     { :data => "90447F", :timestamp => 1300 }
+      #     { data: "904060", timestamp: 904 },
+      #     { data: "804060", timestamp: 1150 },
+      #     { data: "90447F", timestamp: 1300 }
       #   ]
       #
       # @param [*Object] args
@@ -45,8 +42,8 @@ module UniMIDI
       rescue SystemExit, Interrupt
         exit
       end
-      alias_method :gets_bytestr, :gets_s
-      alias_method :gets_hex, :gets_s
+      alias gets_bytestr gets_s
+      alias gets_hex gets_s
 
       # Returns any data in the input buffer that have been received since the last call to a
       # StreamReader method. If a StreamReader method has not yet been called, all data received
@@ -75,11 +72,8 @@ module UniMIDI
         arr = gets_bytestr(*args)
         arr.map { |msg| msg[:data] }.join
       end
-      alias_method :gets_data_bytestr, :gets_data_s
-      alias_method :gets_data_hex, :gets_data_s
-
+      alias gets_data_bytestr gets_data_s
+      alias gets_data_hex gets_data_s
     end
-
   end
-
 end

@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
 
-dir = File.dirname(File.expand_path(__FILE__))
-$LOAD_PATH.unshift dir + "/../lib"
+$LOAD_PATH.prepend(File.expand_path('../lib', __dir__))
 
-require "unimidi"
+require 'midi-communications'
 
 # Prompts the user to select a midi input
 # Sends an inspection of the first 10 messages messages that input receives to standard out
@@ -11,15 +10,15 @@ require "unimidi"
 num_messages = 10
 
 # Prompt the user
-input = UniMIDI::Input.gets
+input = MIDICommunications::Input.gets
 
 # using their selection...
 
-puts "send some MIDI to your input now..."
+puts 'send some MIDI to your input now...'
 
 num_messages.times do
   m = input.gets
   puts(m)
 end
 
-puts "finished"
+puts 'finished'

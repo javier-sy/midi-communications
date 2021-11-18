@@ -1,23 +1,20 @@
-module UniMIDI
-
+module MIDICommunications
   # Common logic that is shared by both Input and Output devices
   module Device
-
     # Methods that are shared by both Input and Output classes
     module ClassMethods
-
       include Enumerable
 
       # Iterate over all devices of this direction (eg Input, Output)
       def each(&block)
-        all.each { |device| yield(device) }
+        all.each(&block)
       end
 
       # Prints ids and names of each device to the console
       # @return [Array<String>]
       def list
         all.map do |device|
-          name = device.pretty_name
+          name = "#{device.id}) #{device.display_name}"
           puts(name)
           name
         end
@@ -35,13 +32,13 @@ module UniMIDI
       def gets(&block)
         device = nil
         direction = get_direction
-        puts ""
+        puts ''
         puts "Select a MIDI #{direction}..."
         while device.nil?
           list
-          print "> "
+          print '> '
           selection = $stdin.gets.chomp
-          if selection != ""
+          if selection != ''
             selection = Integer(selection) rescue nil
             device = all.find { |d| d.id == selection } unless selection.nil?
           end
@@ -73,7 +70,7 @@ module UniMIDI
                 end
         use_device(at(index), &block)
       end
-      alias_method :open, :use
+      alias open use
 
       # Select the device at the given index
       # @param [Integer] index
@@ -81,14 +78,14 @@ module UniMIDI
       def at(index)
         all[index]
       end
-      alias_method :[], :at
+      alias [] at
 
       private
 
       # The direction of the device eg "input", "output"
       # @return [String]
       def get_direction
-        name.split("::").last.downcase
+        name.split('::').last.downcase
       end
 
       # Enable the given device
@@ -102,13 +99,11 @@ module UniMIDI
         end
         device
       end
-
     end
 
     # Methods that are shared by both Input and Output instances
     module InstanceMethods
-
-      # @param [AlsaRawMIDI::Input, AlsaRawMIDI::Output, CoreMIDI::Destination, CoreMIDI::Source, MIDIJRuby::Input, MIDIJRuby::Output, MIDIWinMM::Input, MIDIWinMM::Output] device
+      # @param [AlsaRawMIDI::Input, AlsaRawMIDI::Output, MIDICommunicationsMacOS::Destination, MIDICommunicationsMacOS::Source, MIDIJRuby::Input, MIDIJRuby::Output, MIDIWinMM::Input, MIDIWinMM::Output] device
       def initialize(device)
         @device = device
         @enabled = false
@@ -121,7 +116,7 @@ module UniMIDI
       # Can be passed a block to which the device will be passed in as the yieldparam
       # @param [*Object] args
       # @return [Input, Output] self
-      def open(*args, &block)
+      def open(*args)
         unless @enabled
           @device.open(*args)
           @enabled = true
@@ -138,12 +133,6 @@ module UniMIDI
           end
         end
         self
-      end
-
-      # A human readable display name for this device
-      # @return [String]
-      def pretty_name
-        "#{id}) #{name}"
       end
 
       # Close the device
@@ -172,7 +161,10 @@ module UniMIDI
         base.send(:attr_reader, :direction)
         base.send(:attr_reader, :enabled)
         base.send(:attr_reader, :id)
+        base.send(:attr_reader, :manufacturer)
+        base.send(:attr_reader, :model)
         base.send(:attr_reader, :name)
+        base.send(:attr_reader, :display_name)
         base.send(:alias_method, :enabled?, :enabled)
         base.send(:alias_method, :type, :direction)
       end
@@ -182,20 +174,22 @@ module UniMIDI
       # Populate the direction attribute
       def populate_direction
         @direction = case @device.type
-                when :source, :input then :input
-                when :destination, :output then :output
-                end
+                     when :source, :input then :input
+                     when :destination, :output then :output
+                     end
       end
 
       # Populate attributes from the underlying device object
       def populate_from_device
         @id = @device.id
+
+        @manufacturer = @device.manufacturer
+        @model = @device.model
         @name = @device.name
+        @display_name = @device.display_name
+
         populate_direction
       end
-
     end
-
   end
-
 end

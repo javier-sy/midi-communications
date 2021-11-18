@@ -1,10 +1,9 @@
-require "integration/helper"
+require_relative 'helper'
 
-class UniMIDI::IoTest < Minitest::Test
+class MIDICommunications::IoTest < Minitest::Test
 
   # ** these tests assume that TestOutput is connected to TestInput
-  context "UniMIDI" do
-
+  context 'MIDI Communications' do
     setup do
       @input = TestHelper::Integration.devices[:input].open
       @output = TestHelper::Integration.devices[:output].open
@@ -15,10 +14,8 @@ class UniMIDI::IoTest < Minitest::Test
       @output.close
     end
 
-    context "full IO" do
-
-      context "using numeric bytes" do
-
+    context 'full IO' do
+      context 'using numeric bytes' do
         setup do
           @messages = TestHelper::Integration.numeric_messages
           @messages_arr = @messages.inject(&:+).flatten
@@ -26,8 +23,7 @@ class UniMIDI::IoTest < Minitest::Test
           @pointer = 0
         end
 
-        should "do IO" do
-
+        should 'do IO' do
           @messages.each do |message|
             p "sending: #{message}"
 
@@ -45,17 +41,15 @@ class UniMIDI::IoTest < Minitest::Test
         end
       end
 
-      context "using byte Strings" do
-
+      context 'using byte Strings' do
         setup do
           @messages = TestHelper::Integration.string_messages
           @messages_str = @messages.join
-          @received_str = ""
+          @received_str = ''
           @pointer = 0
         end
 
-        should "do IO" do
-
+        should 'do IO' do
           @messages.each do |message|
 
             p "sending: #{message}"
@@ -70,13 +64,10 @@ class UniMIDI::IoTest < Minitest::Test
             @received_str += received
           end
           assert_equal(@messages_str, @received_str)
-
         end
-
       end
 
-      context "using MIDIMessages" do
-
+      context 'using MIDIMessages' do
         setup do
           @messages = TestHelper::Integration.message_objects
           @messages_arr = @messages.map(&:to_bytes).flatten
@@ -84,8 +75,7 @@ class UniMIDI::IoTest < Minitest::Test
           @pointer = 0
         end
 
-        should "do IO" do
-
+        should 'do IO' do
           @messages.each do |message|
 
             p "sending: #{message}"
@@ -101,13 +91,8 @@ class UniMIDI::IoTest < Minitest::Test
             @received_arr += received
           end
           assert_equal(@messages_arr.length, @received_arr.length)
-
         end
-
       end
-
     end
-
   end
-
 end
