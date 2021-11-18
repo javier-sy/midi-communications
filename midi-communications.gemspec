@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
   # s.add_runtime_dependency  'midi-winmm', '~> 0.1', '>= 0.1.10'
 
   s.add_development_dependency 'minitest', '~> 5.14', '>= 5.14.4'
-  s.add_development_dependency 'mocha', '~> 1.13', '>= 1.13.0'
   s.add_development_dependency 'rake', '~> 13.0', '>= 13.0.6'
   s.add_development_dependency 'shoulda-context', '~> 2.0', '>= 2.0.0'
 end
