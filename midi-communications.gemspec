@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'midi-communications'
-  s.version     = '0.5.0'
-  s.date        = '2021-11-17'
+  s.version     = '0.5.1'
+  s.date        = '2021-11-19'
   s.summary     = 'Platform independent realtime MIDI input and output for Ruby'
   s.description = 'Access MIDI devices for MacOS, Linux (wip), Windows (wip) and JRuby (wip).'
   s.authors     = ['Javier Sánchez Yeste']
