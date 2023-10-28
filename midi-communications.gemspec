@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'midi-communications'
-  s.version     = '0.5.3'
+  s.version     = '0.5.4'
   s.date        = '2023-10-28'
   s.summary     = 'Platform independent realtime MIDI input and output for Ruby'
   s.description = 'Access MIDI devices for MacOS, Linux (wip), Windows (wip) and JRuby (wip).'
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   # "changelog_uri" => ""
   #}
 
-  s.add_runtime_dependency 'midi-communications-macos', '~> 0.5', '>= 0.5.3'
+  s.add_runtime_dependency 'midi-communications-macos', '~> 0.5', '>= 0.5.4'
   # s.add_runtime_dependency  'alsa-rawmidi', '~> 0.3', '>= 0.3.1'
   # s.add_runtime_dependency  'midi-jruby', '~> 0.1', '>= 0.1.4'
   # s.add_runtime_dependency  'midi-winmm', '~> 0.1', '>= 0.1.10'
