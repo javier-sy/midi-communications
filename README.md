@@ -144,6 +144,6 @@ Thanks to [Ari Russo](http://github.com/arirusso) for his ruby library [unimidi]
 
 ### License
 
-[MIDI Communications](https://github.com/javier-sy/midi-communications) Copyright (c) 2021 [Javier Sánchez Yeste](https://yeste.studio), licensed under LGPL 3.0 License
+[MIDI Communications](https://github.com/javier-sy/midi-communications) Copyright (c) 2021-2023 [Javier Sánchez Yeste](https://yeste.studio), licensed under LGPL 3.0 License
 
 [unimidi](https://github.com/arirusso/unimidi) Copyright (c) 2010-2017 [Ari Russo](http://arirusso.com), licensed under Apache License 2.0 (see the file LICENSE.unimidi)
