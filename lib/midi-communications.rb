@@ -16,7 +16,8 @@ require 'midi-communications/input'
 require 'midi-communications/loader'
 require 'midi-communications/output'
 
+require_relative 'midi-communications/version'
+
 module MIDICommunications
-  VERSION = '0.5.4'.freeze
   Platform.bootstrap
 end

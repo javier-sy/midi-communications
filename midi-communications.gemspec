@@ -1,6 +1,8 @@
+require_relative 'lib/midi-communications/version'
+
 Gem::Specification.new do |s|
   s.name        = 'midi-communications'
-  s.version     = '0.6.0'
+  s.version     = MIDICommunications::VERSION
   s.date        = '2025-08-23'
   s.summary     = 'Platform independent realtime MIDI input and output for Ruby'
   s.description = 'Access MIDI devices for MacOS, Linux (wip), Windows (wip) and JRuby (wip).'
