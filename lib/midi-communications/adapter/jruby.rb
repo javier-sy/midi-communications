@@ -2,17 +2,25 @@ require 'midi-jruby'
 
 module MIDICommunications
   module Adapter
-    # Load underlying devices using the midi-jruby gem
+    # JRuby adapter using the midi-jruby gem.
+    #
+    # Uses Java MIDI API to communicate with MIDI devices on JRuby.
+    #
+    # @api private
     module JRuby
+      # Loader for JRuby MIDI devices.
+      # @api private
       module Loader
         extend self
 
-        # @return [Array<JRuby::Input>]
+        # Returns all available MIDI input devices.
+        # @return [Array<MIDIJRuby::Input>]
         def inputs
           ::MIDIJRuby::Device.all_by_type[:input]
         end
 
-        # @return [Array<JRuby::Output>]
+        # Returns all available MIDI output devices.
+        # @return [Array<MIDIJRuby::Output>]
         def outputs
           ::MIDIJRuby::Device.all_by_type[:output]
         end

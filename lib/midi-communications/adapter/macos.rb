@@ -1,18 +1,28 @@
 require 'midi-communications-macos'
 
 module MIDICommunications
+  # Platform-specific adapters for MIDI communication.
+  # @api private
   module Adapter
-    # Load underlying devices using the coremidi gem
+    # macOS adapter using the midi-communications-macos gem.
+    #
+    # Uses Core MIDI to communicate with MIDI devices on macOS.
+    #
+    # @api private
     module MacOS
+      # Loader for macOS MIDI devices.
+      # @api private
       module Loader
         extend self
 
-        # @return [Array<MacOS::Source>]
+        # Returns all available MIDI input sources.
+        # @return [Array<MIDICommunicationsMacOS::Source>]
         def inputs
           ::MIDICommunicationsMacOS::Endpoint.all_by_type[:source]
         end
 
-        # @return [Array<MacOS::Destination>]
+        # Returns all available MIDI output destinations.
+        # @return [Array<MIDICommunicationsMacOS::Destination>]
         def outputs
           ::MIDICommunicationsMacOS::Endpoint.all_by_type[:destination]
         end

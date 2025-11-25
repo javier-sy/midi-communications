@@ -2,17 +2,25 @@ require 'alsa-rawmidi'
 
 module MIDICommunications
   module Adapter
-    # Load underlying devices using the alsa-rawmidi gem
+    # Linux adapter using the alsa-rawmidi gem.
+    #
+    # Uses ALSA to communicate with MIDI devices on Linux.
+    #
+    # @api private
     module Linux
+      # Loader for Linux MIDI devices.
+      # @api private
       module Loader
         extend self
 
-        # @return [Array<Linux::Input>]
+        # Returns all available MIDI input devices.
+        # @return [Array<AlsaRawMIDI::Input>]
         def inputs
           ::AlsaRawMIDI::Device.all_by_type[:input]
         end
 
-        # @return [Array<Linux::Output>]
+        # Returns all available MIDI output devices.
+        # @return [Array<AlsaRawMIDI::Output>]
         def outputs
           ::AlsaRawMIDI::Device.all_by_type[:output]
         end

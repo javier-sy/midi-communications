@@ -35,17 +35,16 @@ output = MIDICommunications::Output.use(0)
 output = MIDICommunications::Output.open(:first)
 output = MIDICommunications::Output.open(0)
 
-# If you want to wait to open the device, you can select it with any of these "finder" methods
-
+# Note: first and last open the device automatically
 output = MIDICommunications::Output.first
+
+# If you want to get a device without opening it, use at/[] or all
 output = MIDICommunications::Output[0]
+output = MIDICommunications::Output.at(0)
 output = MIDICommunications::Output.all[0]
 output = MIDICommunications::Output.all.first
-output = MIDICommunications::Device.all_by_type(:output)[0]
-output = MIDICommunications::Device.all_by_type(:output).first
 
 # You'll need to call open on these before you use it or an exception will be raised
-
 output.open
 
 # It's also possible to select a device by name
@@ -54,4 +53,4 @@ output = MIDICommunications::Output.find_by_name('Roland UM-2 (1)').open
 
 # or using regex match
 
-output = MIDICommunications::Output.find { |device| device.name.match(/Launchpad/) }.open(:first)
+output = MIDICommunications::Output.find { |device| device.name.match(/Launchpad/) }.open

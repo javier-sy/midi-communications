@@ -1,10 +1,19 @@
 module MIDICommunications
-
-  # Deal with different dependencies between different user environments
+  # Handles platform detection and adapter loading.
+  #
+  # Automatically detects the current platform (macOS, Linux, Windows, JRuby)
+  # and loads the appropriate low-level MIDI adapter.
+  #
+  # @api private
   module Platform
     extend self
 
-    # Loads the proper MIDI library and adapter for the user's environment
+    # Loads the correct MIDI adapter for the current platform.
+    #
+    # Called automatically when the library is required. Detects the
+    # platform and loads the corresponding adapter gem.
+    #
+    # @return [void]
     def bootstrap
       require("midi-communications/adapter/#{platform_lib}")
       Loader.use(platform_module::Loader)

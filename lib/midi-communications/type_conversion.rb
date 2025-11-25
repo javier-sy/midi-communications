@@ -1,12 +1,18 @@
 module MIDICommunications
-
-  # Utility for converting between different data formats
+  # Utility methods for converting between MIDI data formats.
+  #
+  # @api public
   module TypeConversion
     extend self
 
-    # Convert an array of numeric bytes to string of hex bytes
-    # @param [Array<Integer>] bytes An array of numeric bytes eg [0x90, 0x40, 0x40]
-    # @return [String] A string of hex bytes eg "904040"
+    # Converts an array of numeric bytes to a hex string.
+    #
+    # @param bytes [Array<Integer>] array of numeric bytes (e.g., [0x90, 0x40, 0x40])
+    # @return [String] hex string representation (e.g., "904040")
+    #
+    # @example
+    #   TypeConversion.numeric_byte_array_to_hex_string([0x90, 0x40, 0x40])
+    #   # => "904040"
     def numeric_byte_array_to_hex_string(bytes)
       bytes.map { |b| b.to_s(16) }.join
     end

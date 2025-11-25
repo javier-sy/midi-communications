@@ -6,5 +6,7 @@
 Gemfile.lock
 bin
 *.mindnode
+.yardoc/
+doc/
 
 

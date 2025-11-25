@@ -1,5 +1,8 @@
 # MIDI Communications
 
+[![Ruby Version](https://img.shields.io/badge/ruby-2.7+-red.svg)](https://www.ruby-lang.org/)
+[![License](https://img.shields.io/badge/license-LGPL--3.0--or--later-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0.html)
+
 **Platform independent realtime MIDI input and output for Ruby.**
 
 This library is part of a suite of Ruby libraries for MIDI:
@@ -50,7 +53,7 @@ Otherwise...
 
 Some examples are included with the library:
 
-* [Selecting a device](http://github.com/arirusso/javier-sy/midi-communications/blob/master/examples/select_a_device.rb)
+* [Selecting a device](http://github.com/javier-sy/midi-communications/blob/master/examples/select_a_device.rb)
 * [MIDI input](http://github.com/javier-sy/midi-communications/blob/master/examples/input.rb)
 * [MIDI output](http://github.com/javier-sy/midi-communications/blob/master/examples/output.rb)
 * [MIDI Sysex output](http://github.com/javier-sy/midi-communications/blob/master/examples/sysex_output.rb)
@@ -67,18 +70,17 @@ See below for additional notes on testing with JRuby.
 
 ### Documentation
 
-[rdoc](http://rdoc.info/gems/midi-communications) (**TODO**)
+[rdoc](http://rdoc.info/gems/midi-communications)
 
 ### Platform Specific Notes
 
 ##### JRuby
 
-* (**TO CONFIRM**) You must be in 1.9 mode.  This is normally accomplished by passing --1.9 to JRuby at the command line.  For testing in 1.9 mode, use `jruby --1.9 -S rake test`
-* (**TO CONFIRM**) javax.sound has some documented issues with SysEx messages in some versions OSX Snow Leopard which do affect this library.
+* Not tested. Could have some problems.
 
 ##### Linux
 
-* (**TO CONFIRM**) *libasound* and *libasound-dev* packages are required
+* Not tested. Could have some problems.
 
 ## Differences between [MIDI Communications](https://github.com/javier-sy/midi-communications) library and [UniMIDI](https://github.com/arirusso/unimidi) library
 
@@ -89,8 +91,6 @@ See below for additional notes on testing with JRuby.
 * Updated dependencies versions
 * Renamed module to MIDICommunications instead of UniMIDI
 * Renamed gem to midi-communications instead of unimidi
-* TODO: update tests to use rspec instead of rake
-* TODO: migrate to (or confirm it's working ok on) Ruby 3.0 and Ruby 3.1
 
 ## Then, why does exist this library if it is mostly a clone of another library?
 
@@ -124,16 +124,6 @@ I've decided to publish my own renamed versions of the modified dependencies bec
 
 All in all I have decided to publish a suite of libraries optimized for MusaDSL use case that also can be used by other people in their projects.
 
-| Function | Library | Based on Ari Russo's| Difference |
-| --- | --- | --- | --- |
-| MIDI Events representation | [MIDI Events](https://github.com/javier-sy/midi-events) | [MIDI Message](https://github.com/arirusso/midi-message) | removed parsing, small improvements |
-| MIDI Data parsing | [MIDI Parser](https://github.com/javier-sy/midi-parser) | [Nibbler](https://github.com/arirusso/nibbler) | removed process history information, minor optimizations |
-| MIDI communication with Instruments and Control Surfaces | [MIDI Communications](https://github.com/javier-sy/midi-communications) | [unimidi](https://github.com/arirusso/unimidi) | use of [MIDI Communications MacOS Layer](https://github.com/javier-sy/midi-communications-macos, removed process history information, removed buffering, removed command line script)
-| Low level MIDI interface to MacOS | [MIDI Communications MacOS Layer](https://github.com/javier-sy/midi-communications-macos) | [ffi-coremidi](https://github.com/arirusso/ffi-coremidi) | removed buffering and process history information, locking behaviour when waiting midi events, improved midi devices name detection, minor optimizations |
-| Low level MIDI interface to Linux | **TO DO** | | |
-| Low level MIDI interface to JRuby | **TO DO** | | |
-| Low level MIDI interface to Windows | **TO DO** | | |
-
 ## Author
 
 * [Javier Sánchez Yeste](https://github.com/javier-sy)
@@ -144,6 +134,6 @@ Thanks to [Ari Russo](http://github.com/arirusso) for his ruby library [unimidi]
 
 ### License
 
-[MIDI Communications](https://github.com/javier-sy/midi-communications) Copyright (c) 2021-2023 [Javier Sánchez Yeste](https://yeste.studio), licensed under LGPL 3.0 License
+[MIDI Communications](https://github.com/javier-sy/midi-communications) Copyright (c) 2021-2025 [Javier Sánchez Yeste](https://yeste.studio), licensed under LGPL 3.0 License
 
 [unimidi](https://github.com/arirusso/unimidi) Copyright (c) 2010-2017 [Ari Russo](http://arirusso.com), licensed under Apache License 2.0 (see the file LICENSE.unimidi)
